@@ -19,7 +19,7 @@
                 src="/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Intro.mp4" 
                 type="video/mp4" 
                 media="(max-width: 767px)">
-        Your browser does not support the video tag.
+        <p>Your browser does not support HTML5 video. Please update your browser.</p>
     </video>
 
     <script>
@@ -30,23 +30,19 @@
             const desktopLoop = "/assets/Videos/2024 1127 Landing Page_Landscape_Loop.mp4";
             const mobileLoop = "/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Loop.mp4";
 
-            // Preload loop video in the background
-            const preloadLoopVideo = new Image();
-            preloadLoopVideo.src = window.innerWidth >= 768 ? desktopLoop : mobileLoop;
-
             // Event listener for when the intro video ends
             videoPlayer.addEventListener('ended', () => {
-                // Change the video source to the loop video based on screen width
-                videoPlayer.src = window.innerWidth >= 768 ? desktopLoop : mobileLoop;
-                videoPlayer.load(); // Reload the video with the new source
+                const loopVideo = window.innerWidth >= 768 ? desktopLoop : mobileLoop;
+                videoPlayer.src = loopVideo;
+                videoPlayer.load(); // Reload video
                 videoPlayer.loop = true;
-                videoPlayer.play();
+                videoPlayer.play().catch(err => console.error('Video playback error:', err));
             });
 
-            // Error handling for video playback
+            // Error handling
             videoPlayer.addEventListener('error', (e) => {
-                console.error('Video playback error:', e);
-                alert('An error occurred while loading the video. Please try refreshing the page.');
+                console.error('Video failed to load:', e);
+                alert('There was an issue loading the video. Please check your connection or try again.');
             });
         });
     </script>
