@@ -7,12 +7,48 @@
     <title>Spectacle</title>
 </head>
 <body>
-    <video class="cover_video" muted loop autoplay playsinline>
-        <!-- Desktop video -->
-        <source src="/assets/Project_Name_Render.mp4" type="video/mp4" media="(min-width: 768px)">
-        <!-- Mobile video -->
-        <source src="/assets/2024 1126 Website Landing Page_Mobile Video (Portrait).mp4" type="video/mp4" media="(max-width: 767px)">
+    <!-- Video container -->
+    <video id="videoPlayer" class="cover_video" muted autoplay playsinline preload="auto">
+        <!-- Desktop Intro video -->
+        <source id="sourceDesktopIntro" 
+                src="/assets/Videos/2024 1127 Landing Page_Landscape_Intro.mp4" 
+                type="video/mp4" 
+                media="(min-width: 768px)">
+        <!-- Mobile Intro video -->
+        <source id="sourceMobileIntro" 
+                src="/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Intro.mp4" 
+                type="video/mp4" 
+                media="(max-width: 767px)">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const videoPlayer = document.getElementById('videoPlayer');
+
+            // Preload loop video URLs
+            const desktopLoop = "/assets/Videos/2024 1127 Landing Page_Landscape_Loop.mp4";
+            const mobileLoop = "/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Loop.mp4";
+
+            // Preload loop video in the background
+            const preloadLoopVideo = new Image();
+            preloadLoopVideo.src = window.innerWidth >= 768 ? desktopLoop : mobileLoop;
+
+            // Event listener for when the intro video ends
+            videoPlayer.addEventListener('ended', () => {
+                // Change the video source to the loop video based on screen width
+                videoPlayer.src = window.innerWidth >= 768 ? desktopLoop : mobileLoop;
+                videoPlayer.load(); // Reload the video with the new source
+                videoPlayer.loop = true;
+                videoPlayer.play();
+            });
+
+            // Error handling for video playback
+            videoPlayer.addEventListener('error', (e) => {
+                console.error('Video playback error:', e);
+                alert('An error occurred while loading the video. Please try refreshing the page.');
+            });
+        });
+    </script>
 </body>
 </html>
