@@ -84,12 +84,12 @@ body {
 
 #mouseCircle {
   position: absolute;
-  width: 40px; /* Adjust size */
-  height: 40px;
-  border: 2px solid rgb(47, 0, 25); /* Circle outline */
+  width: 50px; /* Adjust size */
+  height: 50px;
+  border: 1px solid rgb(255, 255, 255); /* Circle outline */
   border-radius: 50%;
   pointer-events: none; /* Prevent interference with other elements */
-  transition: transform 0.2s ease-out; /* Smooth movement with a delay */
+  transition: transform 0.7s ease-out; /* Smooth movement with a delay */
   transform: translate(-50%, -50%); /* Center the circle */
   z-index: 10000; /* Ensure it stays on top */
 }
