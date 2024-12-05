@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Garet", sans-serif;
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black; /* Fallback for unsupported video playback */
+  color: white;
+}
+
+.cover_video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover; /* Ensures the video covers the entire viewport */
+}
+
+.contact-info {
+  position: absolute;
+  z-index: 1000;
+  bottom: 5%;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info a {
+  font-size: large;
+  font-weight: 500;
+  text-align: start;
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .contact-info a {
+    font-size: medium;
+    text-align: center;
+  }
+
+  .contact-info {
+    width: 100%;
+    align-items: center;
+    right: 0;
+  }
+}

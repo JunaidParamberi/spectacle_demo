@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
+                
+    <link href="./output.css" rel="stylesheet">
+    <title>Spectacle</title>
+    <style>
+        .cover_video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #introVideo {
+            z-index: 1;
+        }
+        #loopVideo {
+            z-index: 0;
+            visibility: hidden;
+        }
+        #loopVideo.active {
+            z-index: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Intro Video -->
+    <video id="introVideo" class="cover_video" muted autoplay playsinline preload="auto">
+        <source id="sourceDesktopIntro" 
+                src="/assets/Videos/2024 1127 Landing Page_Landscape_Intro.mp4" 
+                type="video/mp4" 
+                media="(min-width: 768px)">
+        <source id="sourceMobileIntro" 
+                src="/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Intro.mp4" 
+                type="video/mp4" 
+                media="(max-width: 767px)">
+        <p>Your browser does not support HTML5 video. Please update your browser.</p>
+    </video>
+
+    <!-- Preloaded Loop Video -->
+    <video id="loopVideo" class="cover_video" muted playsinline preload="auto" loop>
+        <source id="sourceDesktopLoop" 
+                src="/assets/Videos/2024 1129 Landing Page_Landscape_Loop.mp4" 
+                type="video/mp4" 
+                media="(min-width: 768px)">
+        <source id="sourceMobileLoop" 
+                src="/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Loop.mp4" 
+                type="video/mp4" 
+                media="(max-width: 767px)">
+        <p>Your browser does not support HTML5 video. Please update your browser.</p>
+    </video>
+
+    <div class="contact-info">
+        <a href="mailto:info@spectacledesign.com">info@spectacledesign.com</a>
+        <a href="tel:+971502522166">+971 50 2522166</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const introVideo = document.getElementById('introVideo');
+            const loopVideo = document.getElementById('loopVideo');
+
+            // Play the loop video when the intro video ends
+            introVideo.addEventListener('ended', () => {
+                // Hide the intro video and show the loop video
+                introVideo.style.visibility = 'hidden';
+                loopVideo.classList.add('active');
+                loopVideo.play().catch(err => console.error('Video playback error:', err));
+            });
+
+            // Error handling
+            introVideo.addEventListener('error', (e) => {
+                console.error('Intro video failed to load:', e);
+                alert('There was an issue loading the intro video.');
+            });
+
+            loopVideo.addEventListener('error', (e) => {
+                console.error('Loop video failed to load:', e);
+                alert('There was an issue loading the loop video.');
+            });
+        });
+    </script>
+</body>
+</html>
