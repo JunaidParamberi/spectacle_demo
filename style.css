@@ -26,20 +26,38 @@ body {
 }
 
 .contact-info {
+  opacity: 0; /* Start with invisible */
+  transition: opacity 1s ease-in; /* Smooth fade-in animation */
+  background-color: transparent;
+}
+.contact-info.visible {
   position: absolute;
   z-index: 1000;
-  bottom: 5%;
-  right: 5%;
+  bottom: 12%;
+  width: 100%;
+  right: 0;
+  left: 0%;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  opacity: 1; /* Fully visible when the class is added */
+  transition: opacity 1s ease-in; /* Smooth fade-in animation */
+  background-color: transparent;
 }
 
 .contact-info a {
-  font-size: large;
+  font-size: 20px;
   font-weight: 500;
   text-align: start;
   color: white;
   text-decoration: none;
+  background-color: transparent;
+  margin: 0%;
+  padding: 0%;
+}
+
+.contact-info a:hover {
+  background-color: transparent;
 }
 
 /* Responsive Design */
@@ -47,11 +65,20 @@ body {
   .contact-info a {
     font-size: medium;
     text-align: center;
+    background-color: transparent;
   }
 
   .contact-info {
     width: 100%;
     align-items: center;
     right: 0;
+    opacity: 0;
+    background-color: transparent;
+    transition: opacity 1s ease-in; /* Smooth fade-in animation */
+  }
+
+  .contact-info.visible {
+    opacity: 1;
+    bottom: 26%;
   }
 }

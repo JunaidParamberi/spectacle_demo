@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
-                
     <link href="./output.css" rel="stylesheet">
     <title>Spectacle</title>
     <style>
@@ -28,10 +27,31 @@
             z-index: 1;
             visibility: visible;
         }
+        .contact-info {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+            text-align: right;
+        }
+        .contact-info a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+            transition: background 0.3s;
+        }
+        .contact-info a:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body>
-
     <!-- Intro Video -->
     <video id="introVideo" class="cover_video" muted autoplay playsinline preload="auto">
         <source id="sourceDesktopIntro" 
@@ -58,35 +78,39 @@
         <p>Your browser does not support HTML5 video. Please update your browser.</p>
     </video>
 
-    <div class="contact-info">
+    <div class="contact-info" style="background-color: transparent;" id="contactInfo">
         <a href="mailto:info@spectacledesign.com">info@spectacledesign.com</a>
         <a href="tel:+971502522166">+971 50 2522166</a>
     </div>
-
+  
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const introVideo = document.getElementById('introVideo');
-            const loopVideo = document.getElementById('loopVideo');
+  const introVideo = document.getElementById('introVideo');
+  const loopVideo = document.getElementById('loopVideo');
+  const contactInfo = document.getElementById('contactInfo');
 
-            // Play the loop video when the intro video ends
-            introVideo.addEventListener('ended', () => {
-                // Hide the intro video and show the loop video
-                introVideo.style.visibility = 'hidden';
-                loopVideo.classList.add('active');
-                loopVideo.play().catch(err => console.error('Video playback error:', err));
-            });
+  // Show the loop video and contact info when the intro video ends
+  introVideo.addEventListener('ended', () => {
+    introVideo.style.visibility = 'hidden';
+    loopVideo.classList.add('active');
+    loopVideo.play().catch(err => console.error('Video playback error:', err));
 
-            // Error handling
-            introVideo.addEventListener('error', (e) => {
-                console.error('Intro video failed to load:', e);
-                alert('There was an issue loading the intro video.');
-            });
+    // Smoothly show the contact info
+    contactInfo.classList.add('visible');
+  });
 
-            loopVideo.addEventListener('error', (e) => {
-                console.error('Loop video failed to load:', e);
-                alert('There was an issue loading the loop video.');
-            });
-        });
+  // Error handling for videos
+  introVideo.addEventListener('error', (e) => {
+    console.error('Intro video failed to load:', e);
+    alert('There was an issue loading the intro video.');
+  });
+
+  loopVideo.addEventListener('error', (e) => {
+    console.error('Loop video failed to load:', e);
+    alert('There was an issue loading the loop video.');
+  });
+});
+
     </script>
 </body>
 </html>
