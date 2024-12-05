@@ -32,6 +32,8 @@
 </head>
 <body>
     <!-- Intro Video -->
+    <div id="mouseCircle"></div>
+
     <video id="introVideo" class="cover_video" muted autoplay playsinline preload="auto">
         <source id="sourceDesktopIntro" 
                 src="/assets/Videos/2024 1127 Landing Page_Landscape_Intro.mp4" 
@@ -89,6 +91,28 @@
     alert('There was an issue loading the loop video.');
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const mouseCircle = document.getElementById('mouseCircle');
+
+    // Move the circle with the mouse pointer
+    document.addEventListener('mousemove', (e) => {
+        mouseCircle.style.left = `${e.pageX}px`;
+        mouseCircle.style.top = `${e.pageY}px`;
+    });
+
+    // Hide the circle if the mouse leaves the window
+    document.addEventListener('mouseleave', () => {
+        mouseCircle.style.display = 'none';
+    });
+
+    // Show the circle when the mouse enters the window
+    document.addEventListener('mouseenter', () => {
+        mouseCircle.style.display = 'block';
+    });
+});
+
 
     </script>
 </body>
