@@ -36,11 +36,11 @@
 
     <video id="introVideo" class="cover_video" muted autoplay playsinline preload="auto">
         <source id="sourceDesktopIntro" 
-                src="/assets/Videos/2024 1127 Landing Page_Landscape_Intro_.mp4" 
+                src="/assets/Videos/2024 1127 Landing Page_Landscape_Intro.mp4" 
                 type="video/mp4" 
                 media="(min-width: 768px)">
         <source id="sourceMobileIntro" 
-                src="/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Intro_1_.mp4" 
+                src="/assets/Videos/2024 1127 Website Landing Page_Mobile Video (Portrait)_Intro.mp4" 
                 type="video/mp4" 
                 media="(max-width: 767px)">
         <p>Your browser does not support HTML5 video. Please update your browser.</p>
@@ -64,56 +64,7 @@
         <a href="tel:+971502522166">+971 50 2522166</a>
     </div>
   
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-  const introVideo = document.getElementById('introVideo');
-  const loopVideo = document.getElementById('loopVideo');
-  const contactInfo = document.getElementById('contactInfo');
-
-  // Show the loop video and contact info when the intro video ends
-  introVideo.addEventListener('ended', () => {
-    introVideo.style.visibility = 'hidden';
-    loopVideo.classList.add('active');
-    loopVideo.play().catch(err => console.error('Video playback error:', err));
-
-    // Smoothly show the contact info
-    contactInfo.classList.add('visible');
-  });
-
-  // Error handling for videos
-  introVideo.addEventListener('error', (e) => {
-    console.error('Intro video failed to load:', e);
-    alert('There was an issue loading the intro video.');
-  });
-
-  loopVideo.addEventListener('error', (e) => {
-    console.error('Loop video failed to load:', e);
-    alert('There was an issue loading the loop video.');
-  });
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const mouseCircle = document.getElementById('mouseCircle');
-
-    // Move the circle with the mouse pointer
-    document.addEventListener('mousemove', (e) => {
-        mouseCircle.style.left = `${e.pageX}px`;
-        mouseCircle.style.top = `${e.pageY}px`;
-    });
-
-    // Hide the circle if the mouse leaves the window
-    document.addEventListener('mouseleave', () => {
-        mouseCircle.style.display = 'none';
-    });
-
-    // Show the circle when the mouse enters the window
-    document.addEventListener('mouseenter', () => {
-        mouseCircle.style.display = 'block';
-    });
-});
-
-
-    </script>
+  
+    <script src="index.js"></script>
 </body>
 </html>
