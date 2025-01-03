@@ -4,12 +4,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactInfo = document.getElementById("contactInfo");
   const sourceMobileIntro = document.getElementById("sourceMobileIntro");
   const sourceDesktopIntro = document.getElementById("sourceDesktopIntro");
+  const sourceMobileLoop = document.getElementById("sourceMobileLoop");
+  const sourceDesktopLoop = document.getElementById("sourceDesktopLoop");
 
   // Check if the mobile video source is properly loaded based on screen width
-  if (window.innerWidth <= 767 && sourceMobileIntro) {
-    introVideo.load(); // Force load the mobile version
-  } else if (sourceDesktopIntro) {
-    introVideo.load(); // Force load the desktop version
+  if (window.innerWidth <= 767) {
+    if (sourceMobileIntro) {
+      introVideo.load(); // Force load the mobile version
+    }
+    if (sourceMobileLoop) {
+      loopVideo.load(); // Force load the mobile version
+    }
+  } else {
+    if (sourceDesktopIntro) {
+      introVideo.load(); // Force load the desktop version
+    }
+    if (sourceDesktopLoop) {
+      loopVideo.load(); // Force load the desktop version
+    }
   }
 
   // Show contact info at the 27th second of the intro video
@@ -20,9 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Play the loop video when the intro video ends
+  // Transition to loop video when intro ends
   introVideo.addEventListener("ended", () => {
-    // Hide the intro video and show the loop video
     introVideo.style.visibility = "hidden";
     loopVideo.classList.add("active");
     loopVideo
