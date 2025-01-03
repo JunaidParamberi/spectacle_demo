@@ -20,19 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Transition to loop video when intro ends
+  // Play the loop video when the intro video ends
   introVideo.addEventListener("ended", () => {
-    // Start fading in the loop video
-    loopVideo.classList.add("active"); // Make loop video visible
+    // Hide the intro video and show the loop video
+    introVideo.style.visibility = "hidden";
+    loopVideo.classList.add("active");
     loopVideo
       .play()
       .catch((err) => console.error("Video playback error:", err));
-
-    // Hide the intro video after a smooth transition
-    introVideo.style.opacity = 0; // Fade out the intro video
-    setTimeout(() => {
-      introVideo.style.visibility = "hidden"; // Hide intro video completely
-    }, 500); // Match the opacity transition time to avoid flicker
   });
 
   // Error handling for videos
