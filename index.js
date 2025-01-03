@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Show contact info at the 26th second of the intro video
   introVideo.addEventListener("timeupdate", () => {
-    if (introVideo.currentTime >= 26) {
-      contactInfo.classList.add("visible"); // Make contact info visible
+    console.log("Current time:", introVideo.currentTime); // Debugging current video time
+    if (introVideo.currentTime >= 27) {
+      contactInfo.classList.add("visible"); // Add 'visible' class to show contact info
     }
   });
 
