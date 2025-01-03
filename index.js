@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     introVideo.load(); // Force load the desktop version
   }
 
-  // Show contact info at the 26th second of the intro video
+  // Show contact info at the 27th second of the intro video
   introVideo.addEventListener("timeupdate", () => {
     console.log("Current time:", introVideo.currentTime); // Debugging current video time
     if (introVideo.currentTime >= 27) {
@@ -22,11 +22,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Transition to loop video when intro ends
   introVideo.addEventListener("ended", () => {
-    introVideo.style.visibility = "hidden";
-    loopVideo.classList.add("active");
+    // Start fading in the loop video
+    loopVideo.classList.add("active"); // Make loop video visible
     loopVideo
       .play()
       .catch((err) => console.error("Video playback error:", err));
+
+    // Hide the intro video after a smooth transition
+    introVideo.style.opacity = 0; // Fade out the intro video
+    setTimeout(() => {
+      introVideo.style.visibility = "hidden"; // Hide intro video completely
+    }, 500); // Match the opacity transition time to avoid flicker
   });
 
   // Error handling for videos
