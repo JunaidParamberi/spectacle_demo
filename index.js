@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const introVideo = document.getElementById("introVideo");
   const loopVideo = document.getElementById("loopVideo");
   const contactInfo = document.getElementById("contactInfo");
+  const sourceMobileIntro = document.getElementById("sourceMobileIntro");
+  const sourceDesktopIntro = document.getElementById("sourceDesktopIntro");
 
   // Check if the mobile video source is properly loaded based on screen width
   if (window.innerWidth <= 767 && sourceMobileIntro) {
